@@ -10,6 +10,17 @@ const typescriptCource = new Course('Typescript', 2);
 
 courseManager.addCourse(typescriptCource);
 
+// Assign a teacher to the course
+const andrew = new Teacher('Andrew', 'Oh');
+courseManager.assignTeacherToCourse('Typescript', andrew);
+
+// Assign a TA to the course
+const brittany = new TeachingAssistant('Brittany', 'Channer');
+courseManager.assignTAToCourse('Typescript', brittany);
+
+console.log(courseManager.getAllCourses());
+
+
 
 // // Assign teacher to the course
 // const tsTeacher = new Teacher('Chris', 'Yang');

@@ -1,5 +1,14 @@
 {
-    "compilerOptions": {
-      "strictPropertyInitialization": false
-    }
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "lib": ["es6"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
