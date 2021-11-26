@@ -7,11 +7,29 @@ export class Course {
     public totalClasses: number;
     public ta: TeachingAssistant;
     public teacher: Teacher;
-    public students: Student[];
+    public students: Map<string, Student>;
 
     constructor(name: string, totalClasses: number) {
         this.name = name;
         this.totalClasses = totalClasses;
+        this.students = new Map();
+    }
+
+    public hasStudent(studentName: string): boolean {
+        return this.students.has(studentName);
+    }
+
+    public addStudent(student: Student): void {
+        // TODO: null check
+        this.students.set(student.getFullName(), student);
+    }
+
+    public removeStudent(studentName: string): Student {
+        const studentToRemove = this.students.get(studentName);
+
+        this.students.delete(studentName);
+
+        return studentToRemove;
     }
 
     public getName(): string {
@@ -23,7 +41,7 @@ export class Course {
             return 0;
         }
 
-        return this.students.length;
+        return this.students.size;
     }
 
     public setTeacher(teacher: Teacher): void {

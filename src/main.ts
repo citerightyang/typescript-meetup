@@ -6,9 +6,12 @@ import { TeachingAssistant } from "./TeachingAssistant";
 
 const courseManager = new CourseManager();
 
+/** Administator */
 const typescriptCource = new Course('Typescript', 2);
+const mathCourse = new Course('Math', 3);
 
 courseManager.addCourse(typescriptCource);
+courseManager.addCourse(mathCourse);
 
 // Assign a teacher to the course
 const andrew = new Teacher('Andrew', 'Oh');
@@ -18,24 +21,15 @@ courseManager.assignTeacherToCourse('Typescript', andrew);
 const brittany = new TeachingAssistant('Brittany', 'Channer');
 courseManager.assignTAToCourse('Typescript', brittany);
 
-console.log(courseManager.getAllCourses());
+courseManager.assignTeacherToCourse('Math', brittany);
+courseManager.assignTAToCourse('Math', andrew);
 
+/** Teachers using the system */
+const student = new Student('Chris', 'Yang');
+courseManager.EnrollStudentToCourse(student, 'Typescript');
+courseManager.EnrollStudentToCourse(student, 'Math');
 
+// const studentRyan = new Student('Ryan', )
 
-// // Assign teacher to the course
-// const tsTeacher = new Teacher('Chris', 'Yang');
-
-// // Assign teaching assistant
-// const ta = new TeachingAssistant('Ryan', 'Scot');
-
-// const andrew = new Student('Andrew', 'Oh');
-// const brittany = new Student('Brittany', 'Channer');
-
-// typescriptCource.teacher = tsTeacher;
-// typescriptCource.ta = ta;
-// typescriptCource.students = [andrew, brittany];
-
-// console.log(`The typescript course has ${typescriptCource.getNumberOfStudents()} students.`);
-// console.log(`The teacher is ${typescriptCource.teacher?.getFullName()}`);
-// console.log(`The teaching assistant is ${typescriptCource.ta?.getFullName()}`);
-
+// console.log(courseManager.getAllCourses());
+console.log(courseManager.getAllEnrolledCourses('Chris Yang'));

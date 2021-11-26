@@ -1,4 +1,5 @@
 import { Course } from "./Course";
+import { Student } from "./Student";
 import { Teacher } from "./Teacher";
 import { TeachingAssistant } from "./TeachingAssistant";
 
@@ -44,5 +45,42 @@ export class CourseManager {
         }
 
         course.ta = ta;
+    }
+
+    /** Methods for the teachers */
+    public EnrollStudentToCourse(student: Student, courseName: string): void {
+        if (!student || !courseName) {
+            return;
+        }
+
+        const courseToEnroll = this.getCourseByName(courseName);
+        courseToEnroll.addStudent(student);
+    }
+
+    public removeStudentFromCourse(student: Student, courseName: string): Student {
+        if (!student || !courseName) {
+            return;
+        }
+
+        const courseToRemoveTheStudent = this.getCourseByName(courseName);
+        courseToRemoveTheStudent.removeStudent(student.getFullName());
+    }
+
+    public getAllStudentsOfCourse(courseName: string): Map<string, Student> {
+        // TODO: Null check
+        const targetCourse = this.getCourseByName(courseName);
+        return targetCourse.students;
+    }
+
+    /** Methods for sdudents */
+    public getAllEnrolledCourses(studentName: string): Course[] {
+        // TODO: null check
+        const courses = Array.from(this.courses, ([courseName, course]) => {
+            if (course.hasStudent(studentName)) {
+                return course;
+            }
+        }).filter(course => course != null);
+        
+        return courses;
     }
 }
